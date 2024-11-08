@@ -12,15 +12,11 @@
         // Ajoutez le token Cesium Ion ici
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjNWNkYTYzYS1hODNhLTQwZjEtYjdmMi0yNTY0NGFkYjJlMGMiLCJpZCI6MjQ4NDU4LCJpYXQiOjE3MjkwNjIwMDZ9.gan_GuBjIjADDeC_ttcN1OZSnfePlAtb1tE23vcDzbU';
 
-        // Initialiser le viewer avec le fond de carte et le terrain
-        const viewer = new Cesium.Viewer('cesiumContainer', {
-            imageryProvider : Cesium.createWorldImagery({
-                style : Cesium.IonWorldImageryStyle.AERIAL
-            }),
-            baseLayerPicker : false
-        });
+        var viewer = new Cesium.Viewer("cesiumContainer", {
+         terrainProvider: Cesium.createWorldTerrain(),
+      });
 
-        viewer.terrainProvider = Cesium.createWorldTerrain();
+        //viewer.terrainProvider = Cesium.createWorldTerrain();
 
         // Charger le modèle 3DTiles
         const tileset = new Cesium.Cesium3DTileset({
