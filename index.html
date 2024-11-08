@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Cesium Globe Test</title>
-    <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/latest/Build/Cesium/Widgets/widgets.css">
-    <script src="https://cesium.com/downloads/cesiumjs/releases/latest/Build/Cesium/Cesium.js"></script>
+  <meta charset="utf-8">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 </head>
 <body>
-    <div id="cesiumContainer" style="width: 100%; height: 100vh;"></div>
-    <script>
-        const viewer = new Cesium.Viewer('cesiumContainer', {
-            imageryProvider: new Cesium.OpenStreetMapImageryProvider({
-                url : 'https://a.tile.openstreetmap.org/'
-            }),
-            baseLayerPicker: false
-        });
-        viewer.terrainProvider = Cesium.createWorldTerrain();
-    </script>
+  <div id="cesiumContainer" style="width: 900px; height:600px"></div>
+  <script>
+
+      var viewer = new Cesium.Viewer("cesiumContainer", {
+         terrainProvider: Cesium.createWorldTerrain(),
+      });
+
+      var tileset = new Cesium.Cesium3DTileset({
+         url: 'https://s3.us-east-2.amazon.com/construkted-assets/0gy35muf8i/tileset.json'
+      });
+
+	  tileset.modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(5, 6, 25));
+      viewer.scene.primitives.add(tileset);
+      viewer.zoomTo(tileset);
+  </script>
 </body>
 </html>
