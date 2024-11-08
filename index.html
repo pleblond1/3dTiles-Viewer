@@ -2,25 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>3DTiles Viewer with Geolocation and Globe</title>
+  <title>3DTiles Viewer</title>
   <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Widgets/widgets.css">
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Cesium.js"></script>
 </head>
 <body>
-  <div id="cesiumContainer" style="width: 100%; height:100vh"></div>
+  <div id="cesiumContainer" style="width: 1903px; height:946px"></div>
   <script>
+      const viewer = new Cesium.Viewer('cesiumContainer', {
+            imageryProvider: new Cesium.OpenStreetMapImageryProvider({
+                url : 'https://a.tile.openstreetmap.org/'
+            }),
+            baseLayerPicker : false
+        });
 
-      var viewer = new Cesium.Viewer("cesiumContainer", {
-         terrainProvider: Cesium.createWorldTerrain(),
-      });
+        // Activer le terrain en 3D
+        viewer.terrainProvider = Cesium.createWorldTerrain();
+
+        // Charger le modèle 3DTiles
+        const tileset = new Cesium.Cesium3DTileset({
+            url: 'https://pleblond1.github.io/3dTiles-Viewer/tileset.json'
+        });
+	  
+      //var viewer = new Cesium.Viewer("cesiumContainer", {
+         //terrainProvider: Cesium.createWorldTerrain(),
+      //});
 
       //var tileset = new Cesium.Cesium3DTileset({
-         //url: 'https://s3.us-east-2.amazon.com/construkted-assets/0gy35muf8i/tileset.json'
-      });
+		 //url: 'https://pleblond1.github.io/3dTiles-Viewer/tileset.json'
+      //});
 
-	  tileset.modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(5, 6, 25));
-      viewer.scene.primitives.add(tileset);
-      viewer.zoomTo(tileset);
+	  
+	  
+       // Ajouter le modèle à la scène
+        viewer.scene.primitives.add(tileset);
+
+        // Définir la position géographique
+        const latitude = 43.448179; 
+        const longitude = 5.247859; 
+        const altitude = 130; // Altitude en mètres
+
+        // Transformation pour positionner le modèle
+        tileset.readyPromise.then(function() {
+            const position = Cesium.Cartesian3.fromDegrees(longitude, latitude, altitude);
+            const matrix = Cesium.Transforms.eastNorthUpToFixedFrame(position);
+            tileset.root.transform = matrix;
+            
+            // Centrer la caméra sur le modèle
+            viewer.zoomTo(tileset);
+        }).otherwise(function(error) {
+            console.error(error);
+	});
   </script>
 </body>
 </html>
