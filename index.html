@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.70/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <title>3DTiles Viewer with Geolocation and Globe</title>
+  <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Widgets/widgets.css">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.82/Build/Cesium/Cesium.js"></script>
 </head>
 <body>
   <div id="cesiumContainer" style="width: 900px; height:600px"></div>
@@ -13,8 +14,8 @@
          terrainProvider: Cesium.createWorldTerrain(),
       });
 
-      var tileset = new Cesium.Cesium3DTileset({
-         url: 'https://s3.us-east-2.amazon.com/construkted-assets/0gy35muf8i/tileset.json'
+      //var tileset = new Cesium.Cesium3DTileset({
+         //url: 'https://s3.us-east-2.amazon.com/construkted-assets/0gy35muf8i/tileset.json'
       });
 
 	  tileset.modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(5, 6, 25));
