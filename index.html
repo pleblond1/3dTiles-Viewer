@@ -60,8 +60,6 @@
         }).otherwise(function(error) {
             console.error(error);
         });
-        const buildingTileset = await Cesium.createOsmBuildingsAsync();
-        viewer.scene.primitives.add(buildingTileset);   
     </script>
 </body>
 </html>
