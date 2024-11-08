@@ -17,9 +17,10 @@
 		 url: 'https://pleblond1.github.io/3dTiles-Viewer/tileset.json'
       });
 
-	  tileset.modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(5.247859, 43.448179, 130.0000000008));
-      viewer.scene.primitives.add(tileset);
-      viewer.zoomTo(tileset);
+	  //tileset.modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(5.247859, 43.448179, 130.0000000008));
+      //viewer.scene.primitives.add(tileset);
+      //viewer.zoomTo(tileset);
+	viewer.zoomTo(viewer.scene.primitives.get(0));
   </script>
 </body>
 </html>
