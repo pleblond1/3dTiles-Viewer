@@ -9,25 +9,37 @@
 <body>
   <div id="cesiumContainer" style="width: 1903px; height:946px"></div>
   <script>
+      const viewer = new Cesium.Viewer('cesiumContainer', {
+            imageryProvider : Cesium.createWorldImagery({
+                style : Cesium.IonWorldImageryStyle.AERIAL
+            }),
+            baseLayerPicker : false
+        });
 
-      var viewer = new Cesium.Viewer("cesiumContainer", {
-         terrainProvider: Cesium.createWorldTerrain(),
-      });
+        // Activer le terrain en 3D
+        viewer.terrainProvider = Cesium.createWorldTerrain();
 
-      var tileset = new Cesium.Cesium3DTileset({
-		 url: 'https://pleblond1.github.io/3dTiles-Viewer/tileset.json'
-      });
+        // Charger le modèle 3DTiles
+        const tileset = new Cesium.Cesium3DTileset({
+            url: 'https://pleblond1.github.io/3dTiles-Viewer/tileset.json'
+        });
+	  
+      //var viewer = new Cesium.Viewer("cesiumContainer", {
+         //terrainProvider: Cesium.createWorldTerrain(),
+      //});
 
-	  //tileset.modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(5.247859, 43.448179, 130.0000000008));
-      //viewer.scene.primitives.add(tileset);
-      //viewer.zoomTo(tileset);
+      //var tileset = new Cesium.Cesium3DTileset({
+		 //url: 'https://pleblond1.github.io/3dTiles-Viewer/tileset.json'
+      //});
+
+	  
 	  
        // Ajouter le modèle à la scène
         viewer.scene.primitives.add(tileset);
 
         // Définir la position géographique
-        const latitude = 43.448179; // exemple : latitude de la Tour Eiffel
-        const longitude = 5.247859; // exemple : longitude de la Tour Eiffel
+        const latitude = 43.448179; 
+        const longitude = 5.247859; 
         const altitude = 130; // Altitude en mètres
 
         // Transformation pour positionner le modèle
