@@ -10,8 +10,8 @@
   <div id="cesiumContainer" style="width: 1903px; height:946px"></div>
   <script>
       const viewer = new Cesium.Viewer('cesiumContainer', {
-            imageryProvider : Cesium.createWorldImagery({
-                style : Cesium.IonWorldImageryStyle.AERIAL
+            imageryProvider: new Cesium.OpenStreetMapImageryProvider({
+                url : 'https://a.tile.openstreetmap.org/'
             }),
             baseLayerPicker : false
         });
